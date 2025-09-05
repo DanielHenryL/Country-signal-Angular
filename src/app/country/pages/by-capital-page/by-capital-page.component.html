@@ -1,3 +1,10 @@
-<country-search-input (value)="onSearch($event)" [placeholder]="'Buscar por capital'"></country-search-input>
+<country-search-input
+  (value)="onSearch($event)"
+  [placeholder]="'Buscar por capital'"
+></country-search-input>
 
+@if (hasError()) {
+<h3>{{ hasError() }}</h3>
+}@else{
 <country-table-list [countries]="countries()"></country-table-list>
+}

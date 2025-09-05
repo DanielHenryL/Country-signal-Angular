@@ -20,10 +20,17 @@ export class ByCapitalPageComponent {
     this.isLoading.set(true);
     this.hasError.set(null);
     this.countryService.searchByCapital(query)
-      .subscribe((countries)=>{
-        this.isLoading.set(false);
-        this.countries.set(countries);
-        console.log(countries);
+      .subscribe({
+        next: (countries) => {
+          this.isLoading.set(false);
+          this.countries.set(countries);
+          this.hasError.set(null);
+        },
+        error:(err) => {
+          this.isLoading.set(false);
+          this.countries.set([]);
+          this.hasError.set(err);
+        },
       })
   }
 }
