@@ -3,8 +3,9 @@
   [placeholder]="'Buscar por país'"
 ></country-search-input>
 
-@if (countryResource.error()) {
-<h3>{{ countryResource.error() }}</h3>
-}@if (countryResource.hasValue()){
-<country-table-list [countries]="countryResource.value()!"></country-table-list>
-}
+<country-table-list
+  [errorMessage]="countryResource.error()"
+  [countries]="countryResource.value() ?? []"
+  [isEmpty]="countryResource.value()?.length == 0"
+  [isLoading]="countryResource.isLoading()"
+></country-table-list>
